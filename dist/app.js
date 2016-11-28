@@ -73,16 +73,26 @@ let db = require("./db-interaction"),
     user = require("./user");
 
 function outputWeather (zipVal){
-   $("#weather").html(''); 
+   // $("#weather").html(''); 
     let currentUser = user.getUser();
     console.log('YEP. WEATHER');
     db.getWeather(zipVal).then(function(weatherData){
         console.log("got some data", weatherData);
         var idArray = Object.keys(weatherData); 
-    idArray.forEach(function(key) {
-      weatherData[key].id = key;
-        });
-  
+        $('#weather').append(
+        `<h1> Location: ${weatherData.name} </h1>
+        <h2> Temperature: ${weatherData.main.temp} </h2>
+        <h2> Conditions: ${weatherData.weather[0].description} </h2>
+        <h2> Air Pressure: ${weatherData.main.pressure} </h2>
+        <h2> Wind Speed : ${weatherData.wind.speed} </h2>
+        `);
+
+        /*Temperature
+Conditions
+Air pressure
+Wind speed*/
+
+ 
   });
 
 
