@@ -4,38 +4,34 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<title></title>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-	<link rel="stylesheet" href="">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+	<link rel="stylesheet" href="css/styles.css">
 	
 </head>
 <body>
 	<h1>THUNDERWARE</h1> 
-	<input type="text" id="zipInput" class="zipInput" placeholder="Input ZIP code here">
-	<button type="submit" id="submitButton" class="submitButton">Submit</button> 
+
+	<div id="sign-in-view">
 		<ul>
-			<li id="auth-btn"> Sign In </li>
-          	<li id="logout" class="is-hidden">Log Out </li>
+			<li><a href="#" id="auth-btn">Sign In</a></li>
+			<li><a href="#" id="logout" class="is-hidden">Log Out</a></li>
         </ul>
     <p id="weather" class="weather"></p>
-
-<!-- 	<script src="https://www.gstatic.com/firebasejs/3.6.1/firebase.js"></script>
- -->
-	<!-- <script>
-  	// Initialize Firebase
-  	var config = {
-	    apiKey: "AIzaSyDKUDJYgeUKBlUtpuHbrYvOSt8SfSs76Cc",
-	    authDomain: "we-can-the-change-the-we-1930a.firebaseapp.com",
-	    databaseURL: "https://we-can-the-change-the-we-1930a.firebaseio.com",
-	    storageBucket: "we-can-the-change-the-we-1930a.appspot.com",
-	    messagingSenderId: "682329478314"
-	  	};
-  	firebase.initializeApp(config);
-	</script> -->
-
-	<script type='text/javascript' src='../dist/app.js'></script>
+    </div>
 
 
-	
+    <div id="zipcode-view" class="hidden">
+    	<input type="text" id="zipInput" class="zipInput" placeholder="Input ZIP code here">
+		<button type="submit" id="submitButton" class="submitButton">Submit</button> 
+    </div>
+
+    <div id="weather-output"></div>
+
+
+
+
+
+<script type='text/javascript' src='../dist/app.js'></script>
 
 </body>
 </html>
