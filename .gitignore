@@ -1,3 +1,4 @@
 .DS_Store
 node_modules
 javascripts/fb-getter.js
+dist/app.js

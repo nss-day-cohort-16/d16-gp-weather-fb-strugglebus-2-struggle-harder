@@ -9,57 +9,43 @@ let db = require("./db-interaction"),
     user = require("./user");
 
 function outputWeather (zipVal){
-   // $("#weather").html(''); 
     let currentUser = user.getUser();
-    console.log('YEP. WEATHER');
+
     db.getWeather(zipVal).then(function(weatherData){
         console.log("got some data", weatherData);
         var idArray = Object.keys(weatherData); 
-        $('#weather').append(
-        `<h1> Location: ${weatherData.name} </h1>
-        <h2> Temperature: ${weatherData.main.temp} </h2>
-        <h2> Conditions: ${weatherData.weather[0].description} </h2>
-        <h2> Air Pressure: ${weatherData.main.pressure} </h2>
-        <h2> Wind Speed : ${weatherData.wind.speed} </h2>
+        $('#weather-output').append(
+        `Location: ${weatherData.name}<br>
+         Temperature: ${weatherData.main.temp}<br>
+         Conditions: ${weatherData.weather[0].description}<br>
+         Air Pressure: ${weatherData.main.pressure}<br>
+         Wind Speed : ${weatherData.wind.speed}<br>
         `);
-
-        /*Temperature
-Conditions
-Air pressure
-Wind speed*/
-
- 
-  });
-
-
-    
+    });    
 }
 
+/* ----- EVENT LISTENERS ----- */
+
+
 $('#submitButton').click(function() {
- 
   var zipVal = $('#zipInput').val(); 
   var zipTest = /^\d{5}(-\d{4})?$/.test(zipVal);
-    if (zipTest) {
-      console.log('good job'); 
+    if (zipTest) { 
       outputWeather(zipVal);
     }else {
-      console.log('failure'); 
+      window.alert("Please enter a valid zip code."); 
     }
-
-
 }); 
 
 
-
 $("#auth-btn").click(function() {
-  console.log('clicked auth'); 
+  //console.log('clicked auth'); 
   user.logInGoogle()
     .then(function(result) {
     let user = result.user;
-    console.log('logged in user', user.uid);
-    $("#auth-btn").addClass("is-hidden"); 
-    $("#logout").removeClass('is-hidden'); 
-  
+    //console.log('logged in user', user.uid);
+    $("#zipcode-view").removeClass("hidden");
+    $("#auth-btn").addClass("hidden"); 
   });
 });
 
@@ -67,10 +53,10 @@ $("#auth-btn").click(function() {
 $("#logout").click(function() {
   user.logOut()
   .then(function() {
-  
     $("#logout").addClass('is-hidden'); 
     $("#auth-btn").removeClass("is-hidden"); 
   });
 });
+
 
 module.exports = outputWeather;
